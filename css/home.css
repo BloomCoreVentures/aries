@@ -1,0 +1,636 @@
+/* ==========================================================================
+   ARIES GROUP — Home page (page-specific sections)
+   About · Stats · Global Reach · Why ARIES · Careers
+   Shared sections live in sections.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   2. ABOUT
+   ========================================================================== */
+.about {
+  height: calc(683 * var(--u));
+  min-height: 480px;
+  overflow: clip;
+}
+
+
+.about__content {
+  position: relative;
+  padding-top: calc(73 * var(--u));
+}
+
+.about__title {
+  margin-top: calc(10 * var(--u));
+}
+
+.about__title-line {
+  display: block;
+}
+
+.about__title-line--indent {
+  padding-left: calc(104 * var(--u));
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: max(calc(529 * var(--u)), 400px);
+  margin-top: 20px;
+  margin-left: calc(109 * var(--u));
+}
+
+/* ==========================================================================
+   3. STATS
+   ========================================================================== */
+.stats {
+  height: calc(271 * var(--u));
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.stats__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(160 * var(--u));
+  text-align: center;
+}
+
+.stats__item:nth-child(1) { min-width: calc(172 * var(--u)); }
+.stats__item:nth-child(2) { min-width: calc(391 * var(--u)); }
+.stats__item:nth-child(3) { min-width: calc(143 * var(--u)); }
+
+.stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.stats__value {
+  font-weight: 500;
+  font-size: var(--fs-stat);
+  line-height: var(--lh-title);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.stats__label {
+  font-weight: 600;
+  font-size: var(--fs-stat-label);
+  line-height: var(--lh-tight);
+  color: var(--c-blue);
+}
+
+/* ==========================================================================
+   6. GLOBAL REACH
+   ========================================================================== */
+.global {
+  height: calc(907 * var(--u));
+  min-height: 640px;
+  overflow: clip;
+}
+
+.global__head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: max(calc(856 * var(--u)), 640px);
+  margin-inline: auto;
+  padding: calc(41 * var(--u)) 0 0;
+  text-align: center;
+}
+
+.global__head .label {
+  margin-bottom: -9px;
+}
+
+.global__text {
+  max-width: 698px;
+}
+
+.global__btn {
+  display: none;
+}
+
+.global__stage {
+  position: absolute;
+  inset: 0;
+}
+
+.global__globe {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.global__glow {
+  position: absolute;
+  left: calc(50% + (732.6 - 720) * var(--u));
+  top: calc(684.6 * var(--u));
+  width: calc(1159.4 * var(--u));
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%) rotate(89.5deg);
+}
+
+.global__lines {
+  position: absolute;
+  left: calc(50% + (-126 - 720) * var(--u));
+  top: calc(364 * var(--u));
+  width: calc(1692 * var(--u));
+  max-width: none;
+  height: auto;
+  transform: scaleX(-1);
+}
+
+.global__disc {
+  position: absolute;
+  left: calc(50% + (115 - 720) * var(--u));
+  top: calc(385 * var(--u));
+  width: calc(1209 * var(--u));
+  height: calc(1209 * var(--u));
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.68);
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+}
+
+.global__img {
+  position: absolute;
+  left: calc(50% - 720 * var(--u));
+  top: calc(310 * var(--u));
+  width: calc(1440 * var(--u));
+  max-width: none;
+  height: auto;
+}
+
+.global__fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(617 * var(--u));
+  height: calc(290 * var(--u));
+  background: linear-gradient(180deg, rgba(7, 7, 7, 0) 0.7%, #070707 84%);
+}
+
+.global__img-m {
+  display: none;
+}
+
+.global__pin {
+  position: absolute;
+  left: var(--left);
+  top: calc(var(--y) * var(--u));
+  display: flex;
+  align-items: center;
+  gap: 11.5px;
+  height: 38.4px;
+  padding: 7.7px 19.2px 7.7px 7.7px;
+  border-radius: 43px;
+  background:
+    radial-gradient(60% 90% at 20% 10%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 70%),
+    radial-gradient(40% 80% at 85% 95%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 60%),
+    rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-weight: 600;
+  font-size: 15.3px;
+  line-height: 1.32;
+  white-space: nowrap;
+  scale: var(--k);
+  transform-origin: 0 0;
+}
+
+.global__pin .tag__icon {
+  width: 23px;
+  height: 23px;
+}
+
+/* ==========================================================================
+   7. WHY ARIES
+   ========================================================================== */
+.why {
+  height: calc(926 * var(--u));
+  min-height: 680px;
+}
+
+.why__head {
+  position: relative;
+  z-index: 2;
+  height: 0;
+}
+
+.why__label {
+  position: absolute;
+  left: calc(40 * var(--u));
+  top: calc(48 * var(--u));
+}
+
+.why__title {
+  position: absolute;
+  left: calc(386 * var(--u));
+  top: calc(50 * var(--u));
+  font-family: var(--f-alt);
+  font-weight: 400;
+  --grad: linear-gradient(-83deg, #ffffff 0.5%, #8dc2ff 96.3%);
+}
+
+.why__title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.why__title-line--indent {
+  padding-left: calc(236 * var(--u));
+}
+
+.why__stage {
+  position: absolute;
+  inset: 0;
+}
+
+.why__art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.why__art-inner {
+  position: absolute;
+  left: calc(50% + (2 - 720) * var(--u));
+  top: 0;
+  width: calc(1438 * var(--u));
+}
+
+.why__picture {
+  display: block;
+}
+
+.why__art-inner img {
+  width: 100%;
+}
+
+.plate {
+  --glass-border: linear-gradient(170deg, rgba(42, 141, 255, 0.16) 0%, rgba(128, 134, 153, 0.03) 100%);
+  position: absolute;
+  left: var(--left);
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--w) * 1px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  scale: var(--k);
+  transform-origin: 0 0;
+}
+
+.plate--top {
+  align-items: flex-start;
+}
+
+.plate__icon {
+  width: 49.5px;
+  height: 49.5px;
+  flex-shrink: 0;
+  margin: 0 0 0 -0.25px;
+}
+
+.plate__text {
+  max-width: 244px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: var(--lh-body);
+  color: var(--c-text-60);
+}
+
+/* ==========================================================================
+   8. CAREERS
+   ========================================================================== */
+.careers {
+  min-height: calc(683 * var(--u));
+  padding-top: calc(31 * var(--u));
+}
+
+.careers__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: max(calc(856 * var(--u)), 620px);
+}
+
+.careers__head .label {
+  margin-bottom: -9px;
+}
+
+.careers__title {
+  max-width: 800px;
+}
+
+.careers__text {
+  max-width: 698px;
+}
+
+.careers__list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(24 * var(--u));
+  margin-top: calc(40 * var(--u));
+}
+
+.career-card {
+  --glass-border: linear-gradient(165deg, rgba(42, 141, 255, 0.16) 0%, rgba(128, 134, 153, 0.03) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: max(calc(327 * var(--u)), 260px);
+  padding: 3px 12px 12px;
+}
+
+.career-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.career-card__title {
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-title);
+  background-image: var(--grad-card-title);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.career-card__text {
+  font-weight: 600;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-text-60);
+}
+
+@media (max-width: 1023px) {
+  /* ---------- About ---------- */
+  .about {
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+
+  .about__content {
+    position: relative;
+    z-index: 1;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .about__title {
+    margin-top: 0;
+  }
+
+  .about__title-line {
+    display: inline;
+  }
+
+  .about__title-line--indent {
+    padding-left: 0;
+  }
+
+  .about__text {
+    width: 100%;
+    max-width: 560px;
+    margin: 0;
+    gap: 16px;
+  }
+
+  /* ---------- Stats ---------- */
+  .stats {
+    height: auto;
+    min-height: 0;
+  }
+
+  .stats__list {
+    flex-wrap: wrap;
+    gap: 32px 40px;
+  }
+
+  .stats__item,
+  .stats__item:nth-child(n) {
+    min-width: 0;
+    gap: 12px;
+  }
+
+  /* ---------- Global ---------- */
+  .global {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .global__head {
+    width: 100%;
+    max-width: 480px;
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .global__head .label {
+    margin-bottom: -8px;
+  }
+
+  .global__btn {
+    display: inline-flex;
+    margin-top: 16px;
+  }
+
+  .global__stage {
+    position: relative;
+    inset: auto;
+    margin-top: 12px;
+  }
+
+  .global__globe,
+  .global__pins {
+    display: none;
+  }
+
+  .global__img-m {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  /* ---------- Why ---------- */
+  .why {
+    height: auto;
+    min-height: 0;
+  }
+
+  .why__head {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .why__label,
+  .why__title {
+    position: static;
+  }
+
+  .why__label {
+    margin-bottom: -8px;
+  }
+
+  .why__title {
+    font-family: var(--f-main);
+    font-weight: 500;
+    max-width: 400px;
+  }
+
+  .why__title-line {
+    display: inline;
+    white-space: normal;
+  }
+
+  .why__title-line--indent {
+    padding-left: 0;
+  }
+
+  .why__stage {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .why__art {
+    position: relative;
+    inset: auto;
+    order: 2;
+    height: 398px;
+    margin-block: -24px;
+  }
+
+  .why__art-inner {
+    left: 50%;
+    width: 100%;
+    max-width: 600px;
+    transform: translateX(-50%);
+  }
+
+  .why__plates {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    max-width: 640px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+
+  .why__plates--a {
+    order: 1;
+  }
+
+  .why__plates--b {
+    order: 3;
+  }
+
+  .plate {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    min-height: 91px;
+    padding: 9px;
+    scale: 1;
+  }
+
+  .plate__icon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .plate__text {
+    max-width: none;
+    font-size: 14px;
+  }
+
+  /* ---------- Careers ---------- */
+  .careers {
+    min-height: 0;
+    padding-top: 0;
+  }
+
+  .careers__head {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .careers__head .label {
+    margin-bottom: -8px;
+  }
+
+  .careers__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .career-card {
+    min-height: 238px;
+    container-type: inline-size;
+  }
+
+  .career-card__body {
+    gap: 12px;
+  }
+
+  .career-card__title {
+    /* never break inside a word: scale with the card's inner width */
+    font-size: clamp(15px, 14.2cqi, 24px);
+  }
+
+  .career-card__text {
+    font-size: 14px;
+  }
+
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .careers__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .why__plates {
+    max-width: 720px;
+  }
+}

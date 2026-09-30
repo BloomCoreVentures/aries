@@ -1,0 +1,73 @@
+/* ==========================================================================
+   ARIES GROUP — Services page
+   Hero uses the shared .hero block (art + light beams) with its own layout.
+   What We Do and the phone CTA are shared components (sections.css).
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.hero--services .srv-hero__art {
+  left: calc(50% + (540 - 720) * var(--u));
+  width: calc(899.5 * var(--u));
+  transform: none;
+}
+
+.srv-hero__label {
+  position: absolute;
+  left: calc(40 * var(--u));
+  top: calc(151 * var(--u));
+}
+
+.srv-hero__title {
+  position: absolute;
+  left: calc(40 * var(--u));
+  top: calc(188 * var(--u));
+  width: max(calc(895 * var(--u)), 600px);
+  font-weight: 500;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-title);
+}
+
+.srv-hero__text {
+  position: absolute;
+  left: calc(40 * var(--u));
+  top: calc(468 * var(--u));
+  width: max(calc(579 * var(--u)), 380px);
+}
+
+/* ---------- CTA ---------- */
+.cta-phone__title--wide {
+  max-width: max(calc(730 * var(--u)), 520px);
+  white-space: normal;
+}
+
+/* ==========================================================================
+   MOBILE / TABLET (< 1024px)
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .hero--services .hero__art {
+    margin-top: -95px;
+  }
+
+  .hero--services .srv-hero__art {
+    left: auto;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .srv-hero__label,
+  .srv-hero__title,
+  .srv-hero__text {
+    position: static;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .srv-hero__title {
+    font-size: 45px;
+  }
+
+  .cta-phone__title--wide {
+    max-width: 400px;
+    margin-inline: auto;
+  }
+}

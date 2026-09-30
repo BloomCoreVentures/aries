@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ARIES GROUP — Influencer &amp; Talent Management Company</title>
+  <meta name="description" content="ARIES connects brands with influencers, streamers and digital creators worldwide, managing partnerships from initial selection to final delivery.">
+  <meta name="theme-color" content="#070707">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="assets/icons/logo-mark.svg" type="image/svg+xml">
+
+  <link rel="preload" href="assets/fonts/Aventa-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Aventa-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/hero-art.webp" as="image" media="(min-width: 1024px)">
+  <link rel="preload" href="assets/img/hero-art-m.webp" as="image" media="(max-width: 1023px)">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500&amp;display=swap">
+
+  <script>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js-anim');
+      setTimeout(function () { if (!window.gsap) document.documentElement.classList.remove('js-anim'); }, 4000);
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/home.css">
+
+  <script src="js/components.js"></script>
+</head>
+<body class="page page-home">
+
+  <div data-component="header" data-active="home"></div>
+  <script>AriesUI.mount()</script>
+
+  <main id="top">
+
+    <!-- ============ 1. HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__art" aria-hidden="true">
+        <div class="hero__art-inner">
+          <picture class="hero__picture" data-parallax="-6">
+            <source media="(max-width: 1023px)" srcset="assets/img/hero-art-m.webp" width="390" height="599">
+            <img class="hero__art-img" src="assets/img/hero-art.webp" width="1440" height="683" alt="" fetchpriority="high">
+          </picture>
+        </div>
+        <img class="hero__beam hero__beam--1" src="assets/icons/hero-beam-1.svg" width="739" height="1165" alt="">
+        <img class="hero__beam hero__beam--2" src="assets/icons/hero-beam-2.svg" width="855" height="1095" alt="">
+        <img class="hero__beam hero__beam--3" src="assets/icons/hero-beam-3.svg" width="833" height="1287" alt="">
+      </div>
+
+      <div class="hero__content container">
+        <p class="label hero__label" data-reveal><span>[</span><span class="label__text">Creator Collaboration</span><span>]</span></p>
+
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__title-a gradient-text" style="--grad: var(--grad-title-x)" data-split>Influencer<br> &amp; Talent</span>
+          <span class="hero__title-b gradient-text" style="--grad: var(--grad-title-x)" data-split>Management<br> Company</span>
+        </h1>
+
+        <div class="hero__aside">
+          <p class="text hero__text" data-reveal>ARIES connects brands with influencers, streamers and digital creators worldwide, managing partnerships from initial selection to final delivery.</p>
+          <a class="btn btn--light hero__btn" href="services.html" data-reveal>
+            <span class="btn__text">Explore Our Services</span>
+            <span class="btn__icon"><img src="assets/icons/arrow.svg" width="10" height="10" alt=""></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. ABOUT ============ -->
+    <section class="about section" id="about" aria-labelledby="about-title">
+      <div data-component="logo-art"></div>
+      <script>AriesUI.mount()</script>
+
+      <div class="about__content container">
+        <p class="label" data-reveal><span>[</span><span class="label__text">About</span><span>]</span></p>
+        <h2 class="title about__title gradient-text" id="about-title" data-split>
+          <span class="about__title-line">Built on Experience.</span>
+          <span class="about__title-line about__title-line--indent">Driven by Influence</span>
+        </h2>
+        <div class="about__text">
+          <p class="text" data-reveal>Founded in 2022, ARIES GROUP operates at the intersection of&nbsp;brands, talent and digital media.</p>
+          <p class="text" data-reveal>We build relationships with digital talent, create commercial opportunities and help companies reach relevant audiences through trusted voices across multiple markets.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. STATS ============ -->
+    <section class="stats section" aria-label="ARIES in numbers">
+      <ul class="stats__list container">
+        <li class="stats__item" data-reveal>
+          <span class="stats__value" data-count="2022" data-count-from="2000" data-count-plain>2022</span>
+          <span class="stats__label">Founded</span>
+        </li>
+        <li class="stats__item" data-reveal>
+          <span class="stats__value" data-count="5000" data-count-suffix="+">5,000+</span>
+          <span class="stats__label">Advertising Integrations</span>
+        </li>
+        <li class="stats__item" data-reveal>
+          <span class="stats__value" data-count="8" data-count-suffix="+">8+</span>
+          <span class="stats__label">Key Markets</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ 4. OUR NETWORK (pinned) ============ -->
+    <section class="floating network section" id="network" aria-labelledby="network-title" data-floating>
+      <div class="floating__pin">
+        <img class="floating__lines" src="assets/icons/network-lines.svg" width="1721" height="1126" alt="" aria-hidden="true" loading="lazy">
+
+        <div class="floating__head container">
+          <p class="label" data-reveal><span>[</span><span class="label__text">Our Network</span><span>]</span></p>
+          <h2 class="title floating__title gradient-text" id="network-title" data-split>Built Across Platforms and&nbsp;Markets</h2>
+          <p class="text floating__text" data-reveal>ARIES works with established and emerging talent across leading social, streaming and content platforms.</p>
+        </div>
+
+        <div class="floating__track" data-floating-track>
+          <!-- Social -->
+          <article class="float-card" style="--x: 40; --offset: 0; --card-rgb: 42 141 255">
+            <div class="float-card__visual">
+              <img class="float-card__img" style="--img-x: -22.4; --img-y: -15.4; --img-w: 312;" src="assets/img/network-social.webp" width="312" height="322" alt="" loading="lazy" data-card-parallax>
+            </div>
+            <div class="float-card__body">
+              <h3 class="float-card__title">Social</h3>
+              <ul class="float-card__tags">
+                <li class="tag"><span class="tag__icon"><img src="assets/icons/net-ig_bg.svg" alt="" width="24" height="24"><img class="tag__glyph" src="assets/icons/net-ig.svg" alt="" width="15" height="14"></span>Instagram</li>
+                <li class="tag"><span class="tag__icon"><img src="assets/icons/net-tiktok.svg" alt="" width="24" height="24"></span>TikTok</li>
+                <li class="tag"><span class="tag__icon"><img src="assets/icons/net-x.svg" alt="" width="24" height="24"></span>X</li>
+                <li class="tag"><span class="tag__icon"><img src="assets/icons/net-youtube.svg" alt="" width="24" height="24"></span>YouTube</li>
+                <li class="tag"><span class="tag__icon"><img src="assets/icons/net-telegram.svg" alt="" width="24" height="24"></span>Telegram</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Markets -->
+          <article class="float-card" style="--x: 1075; --offset: 335; --card-rgb: 177 42 255">
+            <div class="float-card__visual">
+              <img class="float-card__img" style="--img-x: -30; --img-y: -31; --img-w: 322;" src="assets/img/network-markets.webp" width="322" height="357" alt="" loading="lazy" data-card-parallax>
+            </div>
+            <div class="float-card__body">
+              <h3 class="float-card__title">Markets</h3>
+              <ul class="float-card__tags float-card__tags--narrow">
+                <li class="tag"><span class="tag__icon"><img src="assets/icons/net-europe.svg" alt="" width="24" height="24"></span>Europe</li>
+                <li class="tag"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/cis.webp" alt="" width="24" height="24" loading="lazy"></span>CIS</li>
+                <li class="tag"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/uk.webp" alt="" width="24" height="24" loading="lazy"></span>UK</li>
+                <li class="tag"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/au.webp" alt="" width="24" height="24" loading="lazy"></span>Australia</li>
+                <li class="tag"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/latam.webp" alt="" width="24" height="24" loading="lazy"></span>LATAM</li>
+                <li class="tag"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/ca.webp" alt="" width="24" height="24" loading="lazy"></span>Canada</li>
+                <li class="tag"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/usa.webp" alt="" width="24" height="24" loading="lazy"></span>USA</li>
+                <li class="tag"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/af.webp" alt="" width="24" height="24" loading="lazy"></span>Africa</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Streaming -->
+          <article class="float-card" style="--x: 729; --offset: 880; --card-rgb: 241 18 22">
+            <div class="float-card__visual">
+              <img class="float-card__img" style="--img-x: -14.5; --img-y: -31; --img-w: 306.5;" src="assets/img/network-streaming.webp" width="307" height="448" alt="" loading="lazy" data-card-parallax>
+            </div>
+            <div class="float-card__body">
+              <h3 class="float-card__title">Streaming</h3>
+              <ul class="float-card__tags">
+                <li class="tag"><span class="tag__icon"><img src="assets/icons/net-kick.svg" alt="" width="24" height="24"></span>Kick</li>
+                <li class="tag"><span class="tag__icon"><img src="assets/icons/net-twitch.svg" alt="" width="24" height="24"></span>Twitch</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Content -->
+          <article class="float-card" style="--x: 383; --offset: 1314; --card-rgb: 40 189 57">
+            <div class="float-card__visual">
+              <img class="float-card__img" style="--img-x: -30; --img-y: 4.5; --img-w: 322;" src="assets/img/network-content.webp" width="322" height="327" alt="" loading="lazy" data-card-parallax>
+            </div>
+            <div class="float-card__body">
+              <h3 class="float-card__title">Content</h3>
+              <ul class="float-card__tags">
+                <li class="tag"><span class="tag__icon tag__icon--bg"><img src="assets/icons/net-gaming.svg" alt="" width="19" height="19"></span>Gaming</li>
+                <li class="tag"><span class="tag__icon tag__icon--bg"><img src="assets/icons/net-sports.svg" alt="" width="15" height="15"></span>Sports</li>
+                <li class="tag"><span class="tag__icon tag__icon--bg"><img src="assets/icons/net-ent.svg" alt="" width="18" height="18"></span>Entertainment</li>
+                <li class="tag"><span class="tag__icon tag__icon--bg"><img src="assets/icons/net-life.svg" alt="" width="16" height="16"></span>Lifestyle</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. WHAT WE DO (component) ============ -->
+    <div data-component="what-we-do" data-btn-text="Explore All Services" data-btn-href="services.html"></div>
+    <script>AriesUI.mount()</script>
+
+    <!-- ============ 6. GLOBAL REACH ============ -->
+    <section class="global section" id="global-reach" aria-labelledby="global-title">
+      <div class="global__head container">
+        <p class="label" data-reveal><span>[</span><span class="label__text">Global Reach</span><span>]</span></p>
+        <h2 class="title global__title gradient-text" id="global-title" data-split>Connecting Markets Worldwide</h2>
+        <p class="text global__text" data-reveal>Our network spans key markets across Europe, CIS, LATAM and Africa, alongside established partnerships and creator opportunities in the United States, United Kingdom, Canada and Australia.</p>
+        <a class="btn btn--light btn--alt global__btn" href="services.html" data-reveal>
+          <span class="btn__text">Explore All Services</span>
+          <span class="btn__icon"><img src="assets/icons/arrow.svg" width="10" height="10" alt=""></span>
+        </a>
+      </div>
+
+      <div class="global__stage">
+        <div class="global__globe" aria-hidden="true">
+          <img class="global__glow" src="assets/icons/globe-glow.svg" width="1159" height="1985" alt="" loading="lazy">
+          <img class="global__lines" src="assets/icons/globe-lines.svg" width="1692" height="422" alt="" loading="lazy">
+          <div class="global__disc"></div>
+          <img class="global__img" src="assets/img/globe.webp" width="1440" height="629" alt="" loading="lazy" data-parallax="6">
+          <div class="global__fade"></div>
+        </div>
+        <img class="global__img-m" src="assets/img/globe-m.webp" width="390" height="330" alt="World map with ARIES markets: USA, Canada, UK, LATAM, Europe, CIS, Africa and Australia" loading="lazy">
+
+        <ul class="global__pins" aria-label="Key markets">
+          <li class="global__pin" style="--x: 458; --y: 456"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/usa.webp" width="23" height="23" alt="" loading="lazy"></span>USA</li>
+          <li class="global__pin" style="--x: 355; --y: 537"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/ca.webp" width="23" height="23" alt="" loading="lazy"></span>Canada</li>
+          <li class="global__pin" style="--x: 885; --y: 586"><span class="tag__icon"><img src="assets/icons/net-europe.svg" width="23" height="23" alt=""></span>Europe</li>
+          <li class="global__pin" style="--x: 1105; --y: 633"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/cis.webp" width="23" height="23" alt="" loading="lazy"></span>CIS</li>
+          <li class="global__pin" style="--x: 273; --y: 672"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/uk.webp" width="23" height="23" alt="" loading="lazy"></span>UK</li>
+          <li class="global__pin" style="--x: 703; --y: 808"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/af.webp" width="23" height="23" alt="" loading="lazy"></span>Africa</li>
+          <li class="global__pin" style="--x: 325; --y: 846"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/latam.webp" width="23" height="23" alt="" loading="lazy"></span>LATAM</li>
+          <li class="global__pin" style="--x: 1084; --y: 860"><span class="tag__icon tag__icon--flag"><img src="assets/img/flags/au.webp" width="23" height="23" alt="" loading="lazy"></span>Australia</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 7. WHY ARIES ============ -->
+    <section class="why section" id="why-aries" aria-labelledby="why-title">
+      <div class="why__head container">
+        <p class="label why__label" data-reveal><span>[</span><span class="label__text">Why ARIES</span><span>]</span></p>
+        <h2 class="title why__title gradient-text" id="why-title" data-split>
+          <span class="why__title-line">Experience That</span>
+          <span class="why__title-line why__title-line--indent">Connects Both Sides</span>
+        </h2>
+      </div>
+
+      <div class="why__stage">
+        <div class="why__art" aria-hidden="true">
+          <div class="why__art-inner">
+            <picture class="why__picture" data-parallax="-8">
+              <source media="(max-width: 1023px)" srcset="assets/img/why-art-m.webp" width="390" height="398">
+              <img src="assets/img/why-art.webp" width="1438" height="926" alt="" loading="lazy">
+            </picture>
+          </div>
+        </div>
+
+        <ul class="why__plates why__plates--a">
+          <li class="plate glass" style="--x: 235; --y: 272; --w: 265" data-reveal>
+            <img class="plate__icon" src="assets/icons/badge-alert.svg" width="50" height="50" alt="">
+            <span class="plate__text">Established Network</span>
+          </li>
+          <li class="plate glass" style="--x: 57; --y: 606; --w: 281" data-reveal>
+            <img class="plate__icon" src="assets/icons/badge-plus.svg" width="50" height="50" alt="">
+            <span class="plate__text">International Expertise</span>
+          </li>
+          <li class="plate glass" style="--x: 40; --y: 413; --w: 329" data-reveal>
+            <img class="plate__icon" src="assets/icons/badge-dots.svg" width="50" height="50" alt="">
+            <span class="plate__text">Long-standing relationships with digital talent and commercial partners across multiple markets</span>
+          </li>
+          <li class="plate glass" style="--x: 221; --y: 753; --w: 341" data-reveal>
+            <img class="plate__icon" src="assets/icons/badge-router.svg" width="50" height="50" alt="">
+            <span class="plate__text">We focus on building partnerships that create value beyond individual campaigns</span>
+          </li>
+        </ul>
+
+        <ul class="why__plates why__plates--b">
+          <li class="plate glass" style="--x: 1061; --y: 450; --w: 281" data-reveal>
+            <img class="plate__icon" src="assets/icons/badge-dots.svg" width="50" height="50" alt="">
+            <span class="plate__text">Long-Term Approach</span>
+          </li>
+          <li class="plate glass" style="--x: 893; --y: 775; --w: 304" data-reveal>
+            <img class="plate__icon" src="assets/icons/badge-activity.svg" width="50" height="50" alt="">
+            <span class="plate__text">End-to-End Management</span>
+          </li>
+          <li class="plate plate--top glass" style="--x: 931; --y: 273; --w: 330" data-reveal>
+            <img class="plate__icon" src="assets/icons/badge-router.svg" width="50" height="50" alt="">
+            <span class="plate__text">Experience across different audiences, platforms and regional media environments</span>
+          </li>
+          <li class="plate plate--top glass" style="--x: 1050; --y: 622; --w: 350" data-reveal>
+            <img class="plate__icon" src="assets/icons/badge-rocket.svg" width="50" height="50" alt="">
+            <span class="plate__text">One team coordinating communication, negotiations, content and campaign delivery</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 8. CAREERS ============ -->
+    <section class="careers section" id="careers" aria-labelledby="careers-title">
+      <div class="container">
+        <div class="careers__head">
+          <p class="label" data-reveal><span>[</span><span class="label__text">Careers</span><span>]</span></p>
+          <h2 class="title careers__title gradient-text" id="careers-title" data-split>Build the Future of Creator Partnerships</h2>
+          <p class="text careers__text" data-reveal>Join ARIES GROUP and grow your career in influencer marketing, talent management, sales, and campaign management — connecting brands and creators worldwide.</p>
+        </div>
+
+        <ul class="careers__list">
+          <li class="career-card glass" data-reveal>
+            <p class="label"><span>[</span><span class="label__text">01</span><span>]</span></p>
+            <div class="career-card__body">
+              <h3 class="career-card__title">International Environment</h3>
+              <p class="career-card__text">Work with global brands and creators.</p>
+            </div>
+          </li>
+          <li class="career-card glass" data-reveal>
+            <p class="label"><span>[</span><span class="label__text">02</span><span>]</span></p>
+            <div class="career-card__body">
+              <h3 class="career-card__title">Fast Career Growth</h3>
+              <p class="career-card__text">Grow with the company and take on real responsibility.</p>
+            </div>
+          </li>
+          <li class="career-card glass" data-reveal>
+            <p class="label"><span>[</span><span class="label__text">03</span><span>]</span></p>
+            <div class="career-card__body">
+              <h3 class="career-card__title">Young &amp; Ambitious Team</h3>
+              <p class="career-card__text">Dynamic environment with minimal bureaucracy.</p>
+            </div>
+          </li>
+          <li class="career-card glass" data-reveal>
+            <p class="label"><span>[</span><span class="label__text">04</span><span>]</span></p>
+            <div class="career-card__body">
+              <h3 class="career-card__title">Flexible Work</h3>
+              <p class="career-card__text">Flexible working format and location.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 9. FORM (component) ============ -->
+    <div data-component="contact-form" data-id="contact" data-mode="simple"
+         data-title="Let’s Work Together"
+         data-desc="Fill out the form below and tell us about your request. Our team will get back to you shortly."></div>
+    <script>AriesUI.mount()</script>
+
+    <!-- ============ 10. LET'S TALK ============ -->
+    <section class="cta-phone section" id="lets-talk" aria-labelledby="talk-title">
+      <div data-component="cta-phone-art"></div>
+      <script>AriesUI.mount()</script>
+
+      <div class="cta-phone__content container">
+        <h2 class="title cta-phone__title gradient-text" id="talk-title" data-split>Let’s Talk</h2>
+        <p class="text text--muted cta-phone__text" data-reveal>Whether you are a brand looking for the right talent or a creator exploring new commercial opportunities, our team is ready to hear from you.</p>
+        <a class="btn btn--light cta-phone__btn" href="contact.html#contact-form" data-reveal>
+          <span class="btn__text">Contact ARIES</span>
+          <span class="btn__icon"><img src="assets/icons/arrow.svg" width="10" height="10" alt=""></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div data-component="footer"></div>
+  <script>AriesUI.mount()</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/sections.js" defer></script>
+</body>
+</html>

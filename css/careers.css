@@ -1,0 +1,185 @@
+/* ==========================================================================
+   ARIES GROUP — Careers page
+   Hero uses the shared .hero block (ARIES letters + character, layered),
+   Why ARIES = floating cards, Don't See Your Role = feature, CTA = phone CTA.
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.car-hero__letters {
+  position: absolute;
+  left: calc(50% + (51 - 720) * var(--u));
+  top: calc(337 * var(--u));
+  width: calc(1339 * var(--u));
+  max-width: none;
+  height: auto;
+}
+
+.car-hero__char {
+  position: absolute;
+  left: calc(50% + (119 - 720) * var(--u));
+  top: calc(39 * var(--u));
+  width: calc(1201.5 * var(--u));
+}
+
+.car-hero__char img {
+  width: 100%;
+}
+
+.car-hero__fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(496 * var(--u));
+  height: calc(187 * var(--u));
+  background: linear-gradient(180deg, rgba(7, 7, 7, 0) 0%, #070707 84%);
+}
+
+/* dark ellipse behind the right text column */
+.car-hero__shade {
+  position: absolute;
+  left: calc(50% + (819 - 720) * var(--u));
+  top: calc(201 * var(--u));
+  width: calc(857 * var(--u));
+  height: calc(632 * var(--u));
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(7, 7, 7, 0.95), rgba(7, 7, 7, 0));
+}
+
+.car-hero__art-m {
+  display: none;
+}
+
+.hero--careers .hero__label {
+  top: calc(147 * var(--u));
+}
+
+.hero--careers .hero__title-a {
+  top: calc(184 * var(--u));
+  max-width: max(calc(605 * var(--u)), 420px);
+}
+
+.hero--careers .hero__title-b {
+  top: calc(335.5 * var(--u));
+}
+
+.hero--careers .hero__aside {
+  top: calc(440 * var(--u));
+  width: max(calc(513 * var(--u)), 380px);
+}
+
+.car-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- Who We're Looking For ---------- */
+.looking {
+  height: calc(997 * var(--u));
+  min-height: 720px;
+  overflow: clip;
+}
+
+.looking__art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.looking__picture {
+  position: absolute;
+  display: block;
+  left: calc(50% + (1 - 720) * var(--u));
+  top: calc(52 * var(--u));
+  width: calc(1438 * var(--u));
+}
+
+.looking__picture img {
+  width: 100%;
+}
+
+.looking__head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: calc(79 * var(--u));
+  text-align: center;
+}
+
+.looking__text {
+  max-width: 474px;
+}
+
+.looking__text--wide {
+  max-width: 762px;
+}
+
+/* ==========================================================================
+   MOBILE / TABLET (< 1024px)
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .hero--careers .hero__art {
+    margin-top: -272px;
+  }
+
+  .hero--careers .hero__beam,
+  .car-hero__letters,
+  .car-hero__char,
+  .car-hero__fade,
+  .car-hero__shade {
+    display: none;
+  }
+
+  .car-hero__art-m {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  .hero--careers .hero__aside {
+    width: 100%;
+  }
+
+  .car-hero__text {
+    gap: 16px;
+  }
+
+  .looking {
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .looking__art {
+    position: relative;
+    inset: auto;
+    order: 2;
+    height: 398px;
+    margin-top: 0;
+    overflow: hidden;
+  }
+
+  .looking__picture {
+    left: 50%;
+    top: 0;
+    width: 100%;
+    max-width: 600px;
+    transform: translateX(-50%);
+  }
+
+  .looking__head {
+    gap: 16px;
+    padding-top: 0;
+  }
+
+  .looking__text,
+  .looking__text--wide {
+    max-width: 560px;
+  }
+}

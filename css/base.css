@@ -1,0 +1,377 @@
+/* ==========================================================================
+   ARIES GROUP — base: fonts, tokens, reset, typography, utilities
+   ========================================================================== */
+
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: 'Aventa';
+  src: url('../assets/fonts/Aventa-Regular.woff2') format('woff2'),
+       url('../assets/fonts/Aventa-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aventa';
+  src: url('../assets/fonts/Aventa-Medium.woff2') format('woff2'),
+       url('../assets/fonts/Aventa-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aventa';
+  src: url('../assets/fonts/Aventa-SemiBold.woff2') format('woff2'),
+       url('../assets/fonts/Aventa-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Animatable theme colours (What We Do) */
+@property --theme-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #124df1;
+}
+
+@property --theme-label {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #2a8dff;
+}
+
+@property --theme-light {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8dc2ff;
+}
+
+/* ---------- Tokens ---------- */
+:root {
+  /* colours */
+  --c-bg: #070707;
+  --c-bg-card: #111111;
+  --c-white: #ffffff;
+  --c-black: #060606;
+  --c-text-80: rgba(255, 255, 255, 0.8);
+  --c-text-60: rgba(255, 255, 255, 0.6);
+  --c-text-40: rgba(255, 255, 255, 0.4);
+  --c-text-30: rgba(255, 255, 255, 0.3);
+  --c-blue: #2a8dff;
+  --c-blue-strong: #124df1;
+  --c-blue-dark: #123db7;
+  --c-blue-light: #8dc2ff;
+  --c-dark: #141b34;
+  --c-error: #ff5a5f;
+  --c-success: #28bd39;
+
+  /* brand accents (network / what we do) */
+  --c-purple: #b12aff;
+  --c-red: #f11216;
+  --c-green: #28bd39;
+  --c-orange: #ff7f00;
+
+  /* gradients */
+  --grad-title: linear-gradient(210deg, #ffffff 51%, #8dc2ff 84.6%);
+  --grad-title-x: linear-gradient(90deg, #8dc2ff 0%, #ffffff 70.5%);
+  --grad-card-title: linear-gradient(90deg, #8dc2ff 0%, #ffffff 35%);
+  --grad-glass: linear-gradient(170deg, rgba(255, 255, 255, 0.048) 4.3%, rgba(255, 255, 255, 0.02) 72.4%);
+  --grad-glass-soft: linear-gradient(178deg, rgba(255, 255, 255, 0.024) 4.3%, rgba(255, 255, 255, 0.01) 72.4%);
+  --grad-glass-border: linear-gradient(170deg, rgba(42, 141, 255, 0.55) 0%, rgba(128, 134, 153, 0.06) 100%);
+
+  /* typography */
+  --f-main: 'Aventa', 'Helvetica Neue', Arial, sans-serif;
+  --f-alt: 'Inter Tight', 'Aventa', 'Helvetica Neue', Arial, sans-serif;
+
+  --fs-h1: clamp(45px, 5.556vw, 80px);
+  --fs-h2: clamp(40px, 5.139vw, 74px);
+  --fs-h3: clamp(24px, 2.222vw, 32px);
+  --fs-stat: clamp(48px, 5.139vw, 74px);
+  --fs-stat-label: clamp(18px, 1.667vw, 24px);
+  --fs-body: clamp(14px, 1.111vw, 16px);
+  --fs-small: 14px;
+  --fs-label: 12px;
+  --fs-nav: 15px;
+
+  --lh-tight: 1.05;
+  --lh-title: 1.1;
+  --lh-body: 1.32;
+
+  /* layout */
+  --container: 1440px;
+  --gutter: clamp(16px, 2.778vw, 40px);
+  --section-gap: clamp(56px, 5.833vw, 84px);
+  --header-top: clamp(16px, 1.597vw, 23px);
+
+  /* radii */
+  --r-card: 17px;
+  --r-card-lg: 24px;
+  --r-pill: 100px;
+
+  /* blur */
+  --blur-glass: 35px;
+  --blur-ui: 10px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.25s;
+  --dur: 0.45s;
+
+  /* z-index */
+  --z-header: 50;
+  --z-menu: 100;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Dark canvas for the browser itself: backdrop-filter blur samples pixels
+   beyond the viewport edge, and without this the default canvas is white,
+   so glass elements glow white when they reach the top of the screen. */
+html {
+  color-scheme: dark;
+  background-color: var(--c-bg);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--c-bg);
+  color: var(--c-white);
+  font-family: var(--f-main);
+  font-weight: 600;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  body {
+    overflow-x: clip;
+  }
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+img,
+svg,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  outline: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-blue);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(42, 141, 255, 0.35);
+  color: var(--c-white);
+}
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Typography ---------- */
+
+/* Section label: [   ABOUT   ] */
+.label {
+  display: inline-flex;
+  gap: 1.35em;
+  font-weight: 500;
+  font-size: var(--fs-label);
+  line-height: 26px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--c-white);
+  opacity: 0.8;
+}
+
+.label__text {
+  color: var(--label-color, var(--c-blue));
+}
+
+.title {
+  font-weight: 500;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.01em;
+}
+
+.title--h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-title);
+  letter-spacing: 0;
+}
+
+.title--h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-title);
+  letter-spacing: 0;
+}
+
+/* Gradient text. Split lines (see home.js) receive the gradient per line
+   with background-size/position matching the whole block, so the look is
+   identical to a single clipped block. */
+.gradient-text,
+.gradient-text .line__inner {
+  background-image: var(--grad, var(--grad-title));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gradient-text.is-split {
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
+.gradient-text .line__inner {
+  background-size: var(--bw, 100%) var(--bh, 100%);
+  background-position: var(--bx, 0) var(--by, 0);
+  background-repeat: no-repeat;
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.line__inner {
+  display: block;
+  will-change: transform;
+}
+
+.text {
+  font-weight: 600;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-text-80);
+}
+
+.text--muted {
+  color: var(--c-text-60);
+}
+
+/* glass touching the top of the viewport (see "Glass edge guard", main.js) */
+.is-edge,
+.is-edge::after {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* line break only on desktop */
+@media (max-width: 1023px) {
+  .br-d {
+    display: none;
+  }
+}
+
+/* ---------- Pre-animation state (class set inline in <head>) ---------- */
+.js-anim [data-split],
+.js-anim [data-reveal],
+.js-anim .hero__art {
+  visibility: hidden;
+}
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

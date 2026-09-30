@@ -1,0 +1,1580 @@
+/* ==========================================================================
+   ARIES GROUP — shared page sections (used on several pages)
+   Hero with ARIES letters · Floating cards · What We Do · Contact form ·
+   CTA with phone.
+   Desktop (≥1024px) reproduces the 1440px Figma frame: coordinates are
+   written as `calc(N * var(--u))`, where --u = 1px at 1440px and scales
+   down proportionally (set precisely in main.js, CSS fallback below).
+   Floating UI (cards, plates, pins) additionally scales with --k.
+   Mobile (<1024px) follows the 390px frame as a regular flow layout.
+   ========================================================================== */
+
+.page {
+  --u: calc(min(100vw, 1440px) / 1440);
+  --k: 1;
+}
+
+.section {
+  position: relative;
+  margin-top: var(--section-gap);
+}
+
+/* helper: x-coordinate from the 1440 frame, centred on wide screens */
+.page [style*='--x'] {
+  --left: calc(50% + (var(--x) - 720) * var(--u));
+}
+
+/* ==========================================================================
+   HERO with ARIES letters — Home, Careers
+   ========================================================================== */
+.hero {
+  position: relative;
+  height: calc(683 * var(--u));
+  min-height: 560px;
+}
+
+.hero__art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero__art-inner {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: calc(1440 * var(--u));
+  transform: translateX(-50%);
+}
+
+.hero__picture {
+  display: block;
+}
+
+.hero__art-img {
+  width: 100%;
+  height: auto;
+}
+
+.hero__beam {
+  position: absolute;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+.hero__beam--1 { left: calc(50% + (777 - 720) * var(--u)); top: calc(-302 * var(--u)); width: calc(739.4 * var(--u)); }
+.hero__beam--2 { left: calc(50% + (120.5 - 720) * var(--u)); top: calc(-262 * var(--u)); width: calc(854.6 * var(--u)); }
+.hero__beam--3 { left: calc(50% + (-80.4 - 720) * var(--u)); top: calc(-453 * var(--u)); width: calc(833.3 * var(--u)); }
+
+.hero__content {
+  position: relative;
+  height: 100%;
+}
+
+.hero__label {
+  position: absolute;
+  left: calc(44 * var(--u));
+  top: calc(109 * var(--u));
+}
+
+.hero__title {
+  font-weight: 500;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-title);
+}
+
+.hero__title-a,
+.hero__title-b {
+  position: absolute;
+  display: block;
+}
+
+.hero__title-a {
+  left: calc(40 * var(--u));
+  top: calc(146 * var(--u));
+}
+
+.hero__title-b {
+  left: calc(886 * var(--u));
+  top: calc(315 * var(--u));
+}
+
+.hero__aside {
+  position: absolute;
+  left: calc(886 * var(--u));
+  top: calc(507 * var(--u));
+  width: max(calc(417 * var(--u)), 340px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   FLOATING CARDS (pinned) — Our Network (home), Why ARIES (careers)
+   ========================================================================== */
+.floating__pin {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.floating__lines {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(1721 * var(--u));
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%) rotate(-2.35deg);
+  pointer-events: none;
+}
+
+.floating__head {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: max(calc(856 * var(--u)), 600px);
+  padding: 0;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.floating__head .label {
+  margin-bottom: -9px;
+}
+
+.floating__text {
+  max-width: 474px;
+}
+
+.floating__track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  will-change: transform;
+}
+
+.float-card {
+  --visual-s: 1;
+  position: absolute;
+  top: calc(var(--offset-m, var(--offset, 0)) * 1px);
+  width: 322px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 8px 8px;
+  border-radius: var(--r-card-lg);
+  /* No `overflow: hidden` / `isolation` here: in Chrome both turn the card
+     into a separate backdrop root, and the glass layers inside would blur an
+     empty layer instead of the page behind. `scale` provides the stacking
+     context for the ::after glass layer. */
+  scale: var(--k);
+  transform-origin: 0 0;
+  background: rgb(10 10 12 / calc(0.97 * var(--tint, 0)));
+}
+
+/* Card glass lives on its own layer behind the content (not on the card
+   itself): nested backdrop-filters don't compose in Chrome, and this way the
+   inner panel can still blur both the page and the 3D render. */
+.float-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: rgb(0 0 0 / 0.06);
+  -webkit-backdrop-filter: blur(80px);
+  backdrop-filter: blur(80px);
+  /* Near the top of the viewport (main.js "Glass edge guard") the card's own
+     tint first turns opaque (--tint 0 → 1, glass still full), then the glass
+     fades out beneath it (--edge 1 → 0), so the page never shows through
+     unblurred. The blur radius itself never changes: re-blurring every frame
+     flickers on fast scroll. */
+  opacity: var(--edge, 1);
+  pointer-events: none;
+}
+
+.float-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: linear-gradient(170deg, rgb(var(--card-rgb) / 0.55) 0%, rgb(var(--card-rgb) / 0.08) 45%, rgb(var(--card-rgb) / 0.3) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+/* per-card: --x (frame x), --offset (vertical offset in the track, desktop) */
+.float-card[style*='--x'] {
+  left: var(--left);
+}
+
+.float-card__visual {
+  position: relative;
+  z-index: 1;
+  width: calc(262px * var(--visual-s));
+  height: calc(216.5px * var(--visual-s));
+  margin-bottom: calc(-31px * var(--visual-s));
+  flex-shrink: 0;
+}
+
+.float-card__img {
+  position: absolute;
+  left: calc(var(--img-x) * var(--visual-s) * 1px);
+  top: calc(var(--img-y) * var(--visual-s) * 1px);
+  width: calc(var(--img-w) * var(--visual-s) * 1px);
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+/* per-image: --img-x / --img-y / --img-w — position of the 3D render inside
+   the 262×216 visual box (Figma units), set inline on the <img> */
+
+.float-card__body {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 243px;
+  padding: 12px;
+  border-radius: var(--r-card);
+  background-color: rgb(16 16 19 / calc(0.97 * var(--tint, 0)));
+  background-image: var(--grad-glass);
+}
+
+/* panel glass: own layer so it can fade (see .float-card::after) */
+.float-card__body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  -webkit-backdrop-filter: blur(44px);
+  backdrop-filter: blur(44px);
+  opacity: var(--edge, 1);
+  pointer-events: none;
+}
+
+.float-card__body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: linear-gradient(170deg, rgb(var(--card-rgb) / 0.5) 0%, rgb(var(--card-rgb) / 0.06) 60%, rgb(var(--card-rgb) / 0.2) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+.float-card__title {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: var(--lh-title);
+}
+
+.float-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 10px;
+}
+
+.float-card .tag {
+  --tag-rgb: var(--card-rgb);
+}
+
+.float-card__tags--narrow {
+  max-width: 279px;
+}
+
+/* text variant (Why ARIES on Careers) */
+.float-card__text {
+  max-width: 248px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: var(--lh-body);
+  color: var(--c-text-80);
+}
+
+.tag__icon--flag {
+  background: rgba(42, 141, 255, 0.1);
+}
+
+/* ==========================================================================
+   WHAT WE DO (pinned) — rendered by components.js
+   ========================================================================== */
+.wwd {
+  --theme-accent: #124df1;
+  --theme-label: #2a8dff;
+  --theme-light: #8dc2ff;
+}
+
+.wwd__pin {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.wwd__art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wwd__glow {
+  position: absolute;
+  left: 50%;
+  bottom: calc(80 * var(--u));
+  width: calc(1100 * var(--u));
+  height: calc(620 * var(--u));
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--theme-accent) 35%, transparent), transparent);
+  transform: translateX(-50%);
+  filter: blur(calc(30 * var(--u)));
+  opacity: 0.7;
+}
+
+.wwd__art-img {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: calc(1440 * var(--u));
+  max-width: none;
+  height: auto;
+  opacity: 0;
+  transform: translateX(-50%);
+  mix-blend-mode: lighten;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 16%);
+}
+
+.wwd__art-img.is-active {
+  opacity: 1;
+}
+
+.wwd__fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(187 * var(--u));
+  background: linear-gradient(180deg, rgba(7, 7, 7, 0) 0.7%, #070707 84%);
+}
+
+.wwd__stage {
+  position: relative;
+  height: 100%;
+  padding-top: calc(41 * var(--u));
+}
+
+.wwd__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.wwd__label {
+  --label-color: var(--theme-label);
+}
+
+.wwd__title {
+  font-family: var(--f-alt);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.01em;
+}
+
+.wwd__from {
+  display: grid;
+  width: max(calc(593 * var(--u)), 420px);
+}
+
+.wwd__from-item,
+.wwd__to {
+  background-image: linear-gradient(229deg, #ffffff 51%, var(--theme-light) 84.6%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.wwd__from-item {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.wwd__from-item.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.wwd__to-inline {
+  display: none;
+}
+
+.wwd__stage .wwd__to {
+  position: absolute;
+  left: calc(962 * var(--u));
+  bottom: calc(254 * var(--u));
+  width: max(calc(441 * var(--u)), 300px);
+  background-image: linear-gradient(237deg, #ffffff 51%, var(--theme-light) 84.6%);
+}
+
+.wwd__btn {
+  --btn-accent: var(--theme-accent);
+  --btn-accent-active: color-mix(in srgb, var(--theme-accent) 72%, #000);
+  position: absolute;
+  left: calc(962 * var(--u));
+  bottom: calc(184 * var(--u));
+}
+
+.wwd__cards {
+  position: absolute;
+  left: calc(40 * var(--u));
+  bottom: calc(83 * var(--u));
+  display: grid;
+  align-items: end;
+  width: max(calc(479 * var(--u)), 400px);
+}
+
+.wwd__card {
+  --glass-border: linear-gradient(170deg, color-mix(in srgb, var(--theme-accent) 55%, transparent) 0%, rgba(128, 134, 153, 0.05) 100%);
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 209px;
+  padding: 12px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.wwd__card.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.wwd__card-label {
+  --label-color: var(--theme-label);
+}
+
+.wwd__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 435px;
+}
+
+.wwd__card-title {
+  --grad: linear-gradient(90deg, var(--theme-light) 0%, #ffffff 35%);
+  background-image: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.wwd__progress {
+  position: absolute;
+  left: calc(40 * var(--u));
+  right: calc(40 * var(--u));
+  bottom: calc(50 * var(--u));
+  display: flex;
+  gap: 24px;
+}
+
+.wwd__bar {
+  position: relative;
+  flex: 1 1 0;
+  height: 3px;
+  border-radius: 42px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+/* bigger hit area */
+.wwd__bar::after {
+  content: '';
+  position: absolute;
+  inset: -12px 0;
+}
+
+.wwd__bar-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--c-white);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+.wwd__bar.is-active .wwd__bar-fill {
+  transform: scaleX(1);
+}
+
+.wwd.is-enhanced .wwd__bar.is-active .wwd__bar-fill {
+  transform: none;
+}
+
+/* ==========================================================================
+   3D LOGO ART — About (home), For Brands (contact)
+   Absolute layer inside a 683px-high section; mobile shows a single image.
+   ========================================================================== */
+.logo-art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.logo-art__lines {
+  position: absolute;
+  left: calc(50% + (-296 - 720) * var(--u));
+  top: calc(-240 * var(--u));
+  width: calc(1949 * var(--u));
+  max-width: none;
+  height: auto;
+}
+
+.logo-art__glow {
+  position: absolute;
+  left: calc(50% + (677 - 720) * var(--u));
+  top: calc(160 * var(--u));
+  width: calc(608 * var(--u));
+  height: calc(450 * var(--u));
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(18, 77, 241, 0.32), rgba(18, 77, 241, 0));
+  filter: blur(calc(40 * var(--u)));
+}
+
+.logo-art__logo {
+  position: absolute;
+  left: calc(50% + (474 - 720) * var(--u));
+  top: calc(64 * var(--u));
+  width: calc(1162 * var(--u));
+}
+
+.logo-art__logo img {
+  width: 100%;
+  transform: scaleX(-1);
+}
+
+.logo-art__badge {
+  position: absolute;
+  scale: var(--k);
+  transform-origin: 0 0;
+}
+
+.logo-art__badge--1 {
+  left: calc(50% + (1194 - 720) * var(--u));
+  top: calc(98 * var(--u));
+}
+
+.logo-art__badge--2 {
+  left: calc(50% + (692 - 720) * var(--u));
+  top: calc(578 * var(--u));
+}
+
+.logo-art__m {
+  display: none;
+}
+
+/* ==========================================================================
+   CONTACT FORM
+   ========================================================================== */
+.contact-form {
+  min-height: calc(683 * var(--u));
+  display: flex;
+  align-items: center;
+  scroll-margin-top: 24px;
+}
+
+.contact-form__card {
+  --glass-border: linear-gradient(173deg, rgba(42, 141, 255, 0.16) 0%, rgba(128, 134, 153, 0.03) 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, calc(651 * var(--u)));
+  gap: 24px;
+  padding: 17px;
+  overflow: hidden;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  min-width: 0;
+}
+
+.form__head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.upload__error {
+  margin-top: 8px;
+}
+
+.upload.is-invalid .upload__error {
+  display: block;
+}
+
+.upload.is-invalid .upload__drop {
+  border-color: rgba(255, 90, 95, 0.6);
+}
+
+.form__success {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--r-card);
+  background: rgba(40, 189, 57, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(40, 189, 57, 0.35);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  line-height: var(--lh-body);
+  color: var(--c-text-80);
+}
+
+.form__success[hidden] {
+  display: none;
+}
+
+.form__success strong {
+  color: var(--c-white);
+}
+
+.form__success-icon {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--c-success);
+}
+
+.form__success-icon::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  width: 7px;
+  height: 12px;
+  border: solid var(--c-white);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.form__success--error {
+  background: rgba(255, 90, 95, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 90, 95, 0.4);
+}
+
+.form__success--error .form__success-icon {
+  background: rgb(255, 90, 95);
+}
+
+/* "!" instead of the check mark */
+.form__success--error .form__success-icon::before,
+.form__success--error .form__success-icon::after {
+  content: '';
+  position: absolute;
+  left: 13px;
+  width: 2px;
+  border: 0;
+  border-radius: 1px;
+  background: var(--c-white);
+  transform: none;
+}
+
+.form__success--error .form__success-icon::after {
+  top: 7px;
+  height: 9px;
+}
+
+.form__success--error .form__success-icon::before {
+  top: 19px;
+  height: 2px;
+}
+
+.contact-form__media {
+  position: relative;
+  min-height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #070707;
+}
+
+.contact-form__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   CTA WITH PHONE — Let's Talk (home), Contact hero, page CTAs
+   ========================================================================== */
+.cta-phone {
+  height: calc(903 * var(--u));
+  min-height: 640px;
+  overflow: clip;
+}
+
+.cta-phone__art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cta-phone__art > img {
+  position: absolute;
+  max-width: none;
+  height: auto;
+}
+
+.cta-phone__glow--1 {
+  left: calc(50% + (720.9 - 720) * var(--u));
+  top: calc(540 * var(--u));
+  width: calc(958.5 * var(--u));
+  transform: translate(-50%, -50%) rotate(89.5deg);
+}
+
+.cta-phone__glow--2 {
+  left: calc(50% + (720.5 - 720) * var(--u));
+  top: calc(276 * var(--u));
+  width: calc(581.8 * var(--u));
+  transform: translate(-50%, -50%) rotate(89.5deg);
+}
+
+.cta-phone__frames {
+  left: calc(50% + (165 - 720) * var(--u));
+  top: calc(423 * var(--u));
+  width: calc(1099 * var(--u));
+}
+
+.cta-phone__phone {
+  left: calc(50% + (205 - 720) * var(--u));
+  top: calc(253 * var(--u));
+  width: calc(1031 * var(--u));
+}
+
+.cta-phone__chat {
+  left: calc(50% + (111 - 720) * var(--u));
+  top: calc(151 * var(--u));
+  width: calc(279.5 * var(--u));
+}
+
+.cta-phone__envelope {
+  left: calc(50% + (1053 - 720) * var(--u));
+  top: calc(184 * var(--u));
+  width: calc(268.5 * var(--u));
+}
+
+.cta-phone__art .cta-phone__art-m {
+  display: none;
+}
+
+.cta-phone__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: calc(112 * var(--u));
+  text-align: center;
+}
+
+.cta-phone__title {
+  white-space: nowrap;
+}
+
+.cta-phone__text {
+  max-width: 599px;
+}
+
+.cta-phone__btn {
+  margin-top: 4px;
+}
+
+/* Hero variant (Contact): H1 + label + subtitle, art shifted down */
+.cta-phone--hero {
+  height: calc(970 * var(--u));
+  margin-top: 0;
+}
+
+.cta-phone--hero .cta-phone__art {
+  top: calc(92 * var(--u));
+}
+
+.cta-phone--hero .cta-phone__content {
+  padding-top: calc(173 * var(--u));
+}
+
+.cta-phone__label {
+  margin-bottom: -9px;
+}
+
+.cta-phone__title--h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-title);
+  letter-spacing: 0;
+  white-space: normal;
+}
+
+.cta-phone--hero .cta-phone__text {
+  max-width: 480px;
+  color: var(--c-text-80);
+}
+
+/* ==========================================================================
+   FEATURE — image + label / title / text / button
+   For Brands & For Creators (contact), Don't See Your Role (careers).
+   Desktop position of the text block: --fx / --fy (frame coords), --fw.
+   Art images: .feature__img with --ax / --ay / --aw (frame coords).
+   Mobile: text on top (optionally centred), art below with --m-overlap.
+   ========================================================================== */
+.feature {
+  height: calc(683 * var(--u));
+  min-height: 520px;
+  overflow: clip;
+}
+
+.feature__art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.feature__img {
+  position: absolute;
+  left: calc(50% + (var(--ax, 0) - 720) * var(--u));
+  top: calc(var(--ay, 0) * var(--u));
+  width: calc(var(--aw, 720) * var(--u));
+  max-width: none;
+  height: auto;
+}
+
+.feature__img-m {
+  display: none;
+}
+
+.feature__content {
+  position: absolute;
+  z-index: 1;
+  left: calc(50% + (var(--fx, 40) - 720) * var(--u));
+  top: calc(var(--fy, 73) * var(--u));
+  width: max(calc(var(--fw, 743) * var(--u)), 480px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.feature__head {
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  gap: 20px;
+}
+
+.feature__head .label {
+  margin-bottom: -9px;
+}
+
+.feature__text {
+  /* 529px, but always keep the 40px (Figma) right gutter on narrow desktops */
+  max-width: min(529px, calc(50vw + (680 - var(--fx, 40)) * var(--u)));
+}
+
+/* ==========================================================================
+   Footer offsets (home)
+   ========================================================================== */
+.page .footer {
+  padding-top: max(calc(188 * var(--u)), 120px);
+}
+
+/* ==========================================================================
+   Tablet tweaks (1024–1279): keep aside text readable
+   ========================================================================== */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero__title-b {
+    top: calc(290 * var(--u));
+  }
+
+  .hero__aside {
+    top: calc(470 * var(--u));
+  }
+}
+
+/* ==========================================================================
+   MOBILE / TABLET (< 1024px)
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .page {
+    --u: 1px;
+    --k: 1;
+    --section-gap: 40px;
+  }
+
+  .page [style*='--x'] {
+    --left: auto;
+  }
+
+  .container {
+    padding-inline: 16px;
+  }
+
+  .title {
+    font-family: var(--f-main);
+    font-weight: 500;
+    font-size: 40px;
+    line-height: var(--lh-title);
+    letter-spacing: 0;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .title.title--h3 {
+    font-size: 24px;
+  }
+
+  /* ---------- CTA hero ---------- */
+  .cta-phone.cta-phone--hero {
+    overflow: clip;
+  }
+
+  .cta-phone--hero .cta-phone__title--h1 {
+    max-width: 330px;
+  }
+
+  .cta-phone--hero .cta-phone__art {
+    top: auto;
+  }
+
+  .cta-phone--hero .cta-phone__content {
+    padding-top: 190px;
+  }
+
+  .cta-phone__title--h1 {
+    font-size: 45px;
+  }
+
+  /* ---------- Feature ---------- */
+  .feature {
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .feature__content {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 560px;
+    padding-inline: 16px;
+  }
+
+  .feature__text {
+    max-width: 529px;
+  }
+
+  .feature--center-m .feature__content {
+    align-items: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .feature__head {
+    gap: 16px;
+  }
+
+  .feature__head .label {
+    margin-bottom: -8px;
+  }
+
+  .feature__art {
+    position: relative;
+    inset: auto;
+    order: 2;
+    margin-top: var(--m-overlap, 0px);
+  }
+
+  .feature__img {
+    display: none;
+  }
+
+  .feature__img-m {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  .feature .logo-art {
+    margin-top: var(--m-overlap, 0px);
+  }
+
+  /* ---------- 3D logo art ---------- */
+  .logo-art {
+    position: relative;
+    order: 2;
+    margin-top: -97px;
+  }
+
+  .logo-art__lines,
+  .logo-art__glow,
+  .logo-art__logo,
+  .logo-art__badge {
+    display: none;
+  }
+
+  .logo-art__m {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    height: auto;
+    min-height: 0;
+    padding-top: 87px;
+    padding-bottom: 0;
+  }
+
+  .hero__art {
+    position: relative;
+    inset: auto;
+    order: 2;
+    height: auto;
+    margin-top: -260px;
+  }
+
+  .hero__art-inner {
+    position: relative;
+    left: auto;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+    transform: none;
+  }
+
+  .hero__beam {
+    display: none;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: auto;
+  }
+
+  .hero__label,
+  .hero__title-a,
+  .hero__title-b,
+  .hero__aside {
+    position: static;
+  }
+
+  .hero__title {
+    font-size: 45px;
+    line-height: var(--lh-title);
+    max-width: 480px;
+  }
+
+  /* one gradient across the whole flowing title, as in the mobile frame */
+  .hero__title {
+    background-image: var(--grad-title-x);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .hero__title-a,
+  .hero__title-b {
+    display: inline;
+    background: none;
+  }
+
+  .hero__title br {
+    display: none;
+  }
+
+  .hero__aside {
+    width: 100%;
+    max-width: 480px;
+    gap: 24px;
+  }
+
+  .hero__text {
+    color: var(--c-text-80);
+  }
+
+  /* ---------- Network ---------- */
+  .floating__lines {
+    width: 1721px;
+    left: calc(50% + 120px);
+    top: 55%;
+  }
+
+  .floating__head {
+    width: 100%;
+    max-width: 480px;
+    padding-inline: 16px;
+    gap: 16px;
+  }
+
+  .floating__head .label {
+    margin-bottom: -8px;
+  }
+
+  .float-card {
+    --visual-s: 0.566;
+    width: 171px;
+    padding: 17.5px 5.5px 5.5px;
+    border-radius: 13px;
+  }
+
+  .float-card:nth-child(odd) {
+    left: 16px;
+  }
+
+  .float-card:nth-child(even) {
+    left: auto;
+    right: 16px;
+  }
+
+  .float-card__visual {
+    width: 149px;
+    height: 123.5px;
+    margin-bottom: -20px;
+  }
+
+  .float-card__body {
+    min-height: 0;
+    padding: 9.5px;
+    gap: 16px;
+    border-radius: 9.5px;
+  }
+
+  .float-card__body {
+    container-type: inline-size;
+  }
+
+  .float-card__title {
+    /* scales down so long words (e.g. "Responsibility") never break */
+    font-size: min(24px, 12.8cqi);
+  }
+
+  .float-card__tags {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .float-card__text {
+    font-size: 14px;
+  }
+
+  .float-card .tag {
+    padding: 4px 12px 4px 4px;
+    font-size: 14px;
+  }
+
+  /* ---------- What We Do ----------
+     The 3D art fills the free space between the button and the card:
+     sections.js measures it and sets --wwd-art-top / -h / -w, so on any
+     phone height the card never covers the character. */
+  .wwd__pin {
+    min-height: 0;
+  }
+
+  .wwd__art-img {
+    left: 50%;
+    top: var(--wwd-art-top, 250px);
+    bottom: auto;
+    width: var(--wwd-art-w, 820px);
+    height: var(--wwd-art-h, auto);
+  }
+
+  .wwd__glow {
+    top: calc(var(--wwd-art-top, 250px) + 50px);
+    bottom: auto;
+    width: 500px;
+    height: 420px;
+  }
+
+  .wwd__fade {
+    height: 260px;
+    bottom: 0;
+  }
+
+  .wwd__stage {
+    display: flex;
+    flex-direction: column;
+    padding-top: 33px;
+    padding-bottom: 20px;
+  }
+
+  .wwd__head,
+  .wwd__btn,
+  .wwd__cards,
+  .wwd__progress,
+  .wwd__stage .wwd__to {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+  }
+
+  .wwd__head {
+    gap: 8px;
+  }
+
+  .wwd__title {
+    font-family: var(--f-main);
+    font-weight: 500;
+    /* long words ("Ambassadorship") must fit a 320px screen */
+    font-size: min(40px, 10.5vw);
+    line-height: var(--lh-title);
+    letter-spacing: 0;
+  }
+
+  .wwd__from {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .wwd__from-item {
+    background-image: linear-gradient(90deg, var(--theme-light) 0%, color-mix(in srgb, var(--theme-light) 70%, #fff) 100%);
+  }
+
+  .wwd__to-inline {
+    display: inline;
+  }
+
+  .wwd__stage .wwd__to {
+    display: none;
+  }
+
+  .wwd__btn {
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+
+  .wwd__cards {
+    width: 100%;
+    max-width: 560px;
+    margin-top: auto;
+  }
+
+  .wwd__card {
+    min-height: 171px;
+    gap: 16px;
+  }
+
+  .wwd__card-body {
+    gap: 12px;
+  }
+
+  .wwd__card-title {
+    font-size: 24px;
+  }
+
+  .wwd__card .text {
+    font-size: 14px;
+  }
+
+  .wwd__progress {
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  /* ---------- Form ---------- */
+  .contact-form {
+    min-height: 0;
+  }
+
+  .contact-form__card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 12px;
+  }
+
+  .form__row {
+    gap: 16px;
+  }
+
+  .form__row:has(.field--wide-m) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .form__fields {
+    gap: 16px;
+  }
+
+  .form__desc {
+    font-size: 14px;
+  }
+
+  .field__control {
+    padding: 11px 9px;
+  }
+
+  .field__control--area {
+    height: 104px;
+  }
+
+  .upload__drop {
+    padding: 9px;
+  }
+
+  .upload.has-file .upload__drop {
+    padding-right: 52px;
+  }
+
+  .upload__body {
+    gap: 8px;
+  }
+
+  .contact-form__media {
+    min-height: 0;
+    aspect-ratio: 326 / 346;
+  }
+
+  /* ---------- Let's Talk ---------- */
+  .cta-phone {
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .cta-phone__art {
+    position: relative;
+    inset: auto;
+    order: 2;
+  }
+
+  .cta-phone__art > img:not(.cta-phone__art-m) {
+    display: none;
+  }
+
+  .cta-phone__art .cta-phone__art-m {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .cta-phone__content {
+    gap: 16px;
+    padding-top: 0;
+  }
+
+  .cta-phone__title {
+    font-size: 40px;
+    white-space: normal;
+    max-width: 340px;
+  }
+
+  .cta-phone__text {
+    color: var(--c-text-80);
+  }
+
+  .cta-phone__btn {
+    margin-top: 8px;
+  }
+
+  .page .footer {
+    padding-top: 42px;
+  }
+}
+
+/* ==========================================================================
+   WHAT WE DO — short phones (compact) and very short screens / landscape
+   (static list instead of the pinned scene; sections.js skips the pin)
+   ========================================================================== */
+@media (max-width: 1023px) and (max-height: 759px) {
+  .wwd__stage {
+    padding-top: 24px;
+    padding-bottom: 16px;
+  }
+
+  .wwd__title {
+    font-size: min(32px, 9vw);
+  }
+
+  .wwd__btn {
+    margin-top: 16px;
+  }
+
+  .wwd__card {
+    min-height: 0;
+    gap: 12px;
+  }
+
+  .wwd__card-body {
+    gap: 8px;
+  }
+
+  .wwd__card-title {
+    font-size: 20px;
+  }
+
+  .wwd__card .text {
+    font-size: 13px;
+  }
+
+  .wwd__progress {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 599px) {
+  .wwd__pin {
+    height: auto;
+  }
+
+  .wwd__stage {
+    height: auto;
+    padding-bottom: 40px;
+  }
+
+  .wwd__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 240px;
+  }
+
+  .wwd__card {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .wwd__art-img {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 70%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 70%, transparent 100%);
+  }
+
+  .wwd__fade,
+  .wwd__progress {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Reduced motion: no pin / scrub — sections become static
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .floating__pin {
+    height: auto;
+    min-height: 0;
+    padding-block: 40px;
+    overflow: visible;
+  }
+
+  .floating__lines {
+    display: none;
+  }
+
+  .floating__head {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-inline: auto;
+    transform: none;
+  }
+
+  .floating__track {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+    padding-inline: 16px;
+  }
+
+  .float-card,
+  .float-card:nth-child(n) {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    scale: 1;
+  }
+}
+
+/* Contact form in switch mode: shorter request field on desktop (Figma) */
+@media (min-width: 1024px) {
+  .form[data-form-mode='switch'] .field__control--area {
+    height: 85px;
+  }
+}
