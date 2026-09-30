@@ -1,0 +1,62 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 2147259619">
+<g id="9">
+<g id="Group 2087326591">
+<g id="Frame 2147259557">
+<path d="M-16.9999 -11.25C-16.9999 -20.6388 -9.38872 -28.25 0.00012209 -28.25H295C304.389 -28.25 312 -20.6388 312 -11.25V60.75C312 70.1388 304.389 77.75 295 77.75H0.000125905C-9.38871 77.75 -16.9999 70.1388 -16.9999 60.75V-11.25Z" fill="url(#paint0_linear_187_2)" fill-opacity="0.2"/>
+<path d="M0.00012209 -27.75H295C304.113 -27.75 311.5 -20.3627 311.5 -11.25V60.75C311.5 69.8627 304.113 77.25 295 77.25H0.00012209C-9.11257 77.25 -16.4999 69.8627 -16.4999 60.75V-11.25L-16.494 -11.6758C-16.2682 -20.5917 -8.97022 -27.75 0.00012209 -27.75Z" stroke="url(#paint1_linear_187_2)" stroke-opacity="0.1"/>
+<g id="Group 2087326506">
+<g id="Group 2087326587">
+<g id="Frame 2147259483">
+<rect x="7.81616" y="7.81592" width="33.8684" height="33.8684" rx="16.9342" fill="white" fill-opacity="0.05"/>
+<g id="Frame 2147259540">
+<g id="Frame 1707479747">
+<circle id="Ellipse 807" cx="20.8317" cy="30.055" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 808" cx="22.2181" cy="31.4412" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 809" cx="23.8831" cy="32.8284" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 810" cx="25.824" cy="32.8289" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 811" cx="27.7653" cy="31.4417" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 812" cx="29.1525" cy="30.055" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 813" cx="30.5396" cy="28.6687" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 814" cx="30.5398" cy="27.0037" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 815" cx="30.5393" cy="25.3391" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 816" cx="30.5396" cy="23.6751" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 827" cx="23.0502" cy="25.0613" r="0.693636" fill="white"/>
+<circle id="Ellipse 828" cx="24.4366" cy="26.449" r="0.693636" fill="white"/>
+<circle id="Ellipse 829" cx="25.5465" cy="25.0613" r="0.693636" fill="white"/>
+<circle id="Ellipse 830" cx="26.9337" cy="23.6765" r="0.693636" fill="white"/>
+<circle id="Ellipse 817" cx="19.4449" cy="28.6678" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 818" cx="19.4449" cy="27.0037" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 819" cx="19.4449" cy="25.3396" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 820" cx="19.4449" cy="23.6756" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 831" cx="19.4446" cy="22.011" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 833" cx="30.5396" cy="22.01" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 832" cx="19.4446" cy="20.3465" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 834" cx="30.5396" cy="20.347" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 821" cx="20.8317" cy="18.9597" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 822" cx="22.4962" cy="18.1272" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 823" cx="24.1592" cy="17.7254" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 824" cx="25.8229" cy="17.7254" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 825" cx="27.4879" cy="18.1277" r="0.693636" fill="#2B8DFF"/>
+<circle id="Ellipse 826" cx="29.1521" cy="18.9597" r="0.693636" fill="#2B8DFF"/>
+</g>
+</g>
+</g>
+<path id="Ellipse 14559" d="M24.75 0.43457C38.1792 0.43457 49.0654 11.3208 49.0654 24.75C49.0654 38.1792 38.1792 49.0654 24.75 49.0654C11.3208 49.0654 0.434577 38.1792 0.43457 24.75C0.43457 11.3208 11.3208 0.43457 24.75 0.43457Z" stroke="white" stroke-opacity="0.07" stroke-width="0.868421"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_187_2" x1="53.0348" y1="-28.25" x2="60.3387" y2="61.563" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.24"/>
+<stop offset="1" stop-color="white" stop-opacity="0.1"/>
+</linearGradient>
+<linearGradient id="paint1_linear_187_2" x1="147.5" y1="-28.25" x2="175.765" y2="97.9178" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2A8DFF"/>
+<stop offset="1" stop-color="#808699" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>
