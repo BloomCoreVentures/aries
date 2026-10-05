@@ -427,15 +427,33 @@
     min-height: 0;
   }
 
+  /* Figma mobile: one row, spread edge to edge; sizes follow the screen
+     width (30 / 16px at 390px) so it never wraps, down to 320px */
   .stats__list {
-    flex-wrap: wrap;
-    gap: 32px 40px;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    max-width: 560px;
+    margin-inline: auto;
   }
 
   .stats__item,
   .stats__item:nth-child(n) {
     min-width: 0;
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .stats__item:nth-child(2) {
+    width: min(136px, 34.9vw);
+  }
+
+  .stats__value {
+    font-size: min(30px, 7.7vw);
+    line-height: 1.1;
+  }
+
+  .stats__label {
+    font-size: min(16px, 4.1vw);
   }
 
   /* ---------- Global ---------- */

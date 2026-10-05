@@ -1,0 +1,121 @@
+/* ==========================================================================
+   ARIES GROUP — legal pages (Terms of Use, Privacy Policy)
+   ========================================================================== */
+.legal {
+  margin-top: 0;
+  padding-top: max(calc(180 * var(--u)), 140px);
+}
+
+.legal__inner {
+  max-width: 880px;
+}
+
+.legal__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.legal__head .label {
+  margin-bottom: -9px;
+}
+
+.legal__title {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-title);
+}
+
+.legal__updated {
+  color: var(--c-text-60);
+}
+
+.legal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 40px;
+  color: var(--c-text-80);
+}
+
+.legal__body section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.legal__body h2 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: var(--lh-title);
+  color: var(--c-white);
+}
+
+.legal__body p,
+.legal__body li {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.legal__body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.legal__body li::marker {
+  color: var(--c-blue);
+}
+
+.legal__body strong {
+  color: var(--c-white);
+  font-weight: 600;
+}
+
+.legal__body a {
+  color: var(--c-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal__body a:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 1023px) {
+  .legal {
+    padding-top: 120px;
+  }
+
+  .legal__head {
+    gap: 16px;
+    padding-bottom: 32px;
+  }
+
+  .legal__head .label {
+    margin-bottom: -8px;
+  }
+
+  .legal__title {
+    font-size: 40px;
+  }
+
+  .legal__body {
+    gap: 32px;
+    padding-top: 32px;
+  }
+
+  .legal__body h2 {
+    font-size: 20px;
+  }
+
+  .legal__body p,
+  .legal__body li {
+    font-size: 15px;
+  }
+}

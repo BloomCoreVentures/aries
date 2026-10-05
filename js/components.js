@@ -93,8 +93,7 @@
             '<div class="footer__line"></div>' +
             '<div class="footer__meta">' +
               '<p>© 2026</p>' +
-              // TODO: bring back when the pages exist
-              // '<div class="footer__legal"><a href="terms.html">Terms of use</a><a href="privacy.html">Privacy Policy</a></div>' +
+              '<div class="footer__legal"><a href="terms.html">Terms of use</a><a href="privacy.html">Privacy Policy</a></div>' +
             '</div>' +
           '</div>' +
         '</div>' +
