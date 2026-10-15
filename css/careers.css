@@ -22,7 +22,17 @@
 }
 
 .car-hero__char img {
+  position: relative;
   width: 100%;
+}
+
+/* shirt logo: soft-light over the render (as in Figma) */
+.car-hero__char .car-hero__char-logo {
+  position: absolute;
+  left: calc(629 / 1201.528 * 100%);
+  top: calc(415 / 786 * 100%);
+  width: calc(30.5 / 1201.528 * 100%);
+  mix-blend-mode: soft-light;
 }
 
 .car-hero__fade {

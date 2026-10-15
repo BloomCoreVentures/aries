@@ -54,6 +54,12 @@
       touchMultiplier: 1.4,
     });
 
+    // no scrolling under the preloader (components.js); resume on its exit
+    if (root.classList.contains('is-preloading')) {
+      lenis.stop();
+      document.addEventListener('aries:intro', () => lenis.start(), { once: true });
+    }
+
     if (hasGsap) {
       if (hasST) lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -67,7 +73,14 @@
     }
   }
 
+  // the header is fixed: element targets land just below it
+  const headerEl = document.querySelector('.header');
+  const headerOffset = () => -(headerEl ? headerEl.offsetHeight : 0);
+
   const scrollToTarget = (target, opts = {}) => {
+    if (typeof target !== 'number' && opts.offset === undefined) {
+      opts = { ...opts, offset: headerOffset() };
+    }
     if (lenis) {
       lenis.scrollTo(target, { duration: 1.2, ...opts });
       return;
@@ -520,6 +533,8 @@
      dark page the difference is invisible, and it returns further down.
      ------------------------------------------------------------------ */
   const GLASS = '.glass, .btn, .badge__core, .nav__list, .nav__link.is-active, .burger, .segmented__label, .chip__label, .contact-card, .global__disc, .global__pin';
+  // .silhouette is deliberately NOT here: its blur is what hides the lines
+  // behind the 3D renders, dropping it near the top made them show through
   if ('IntersectionObserver' in window) {
     const edgeIO = new IntersectionObserver((entries) => {
       entries.forEach((e) => e.target.classList.toggle('is-edge', e.isIntersecting));

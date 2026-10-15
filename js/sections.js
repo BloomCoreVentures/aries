@@ -127,6 +127,13 @@
   function initReveals() {
     if (reduceMotion) return;
 
+    // first-screen animations; held while the preloader is on screen and
+    // played as its curtain starts to lift (components.js → "aries:intro")
+    const intro = gsap.timeline({ paused: root.classList.contains('is-preloading'), delay: 0 });
+    if (intro.paused()) {
+      document.addEventListener('aries:intro', () => intro.delay(0.25).play(), { once: true });
+    }
+
     // titles, line by line
     splitRoots.forEach((el) => {
       const lines = el.querySelectorAll('.line__inner');
@@ -139,19 +146,14 @@
       };
 
       if (!lines.length) {
-        gsap.from(el, {
-          y: 30,
-          autoAlpha: 0,
-          duration: 1,
-          ease: 'power3.out',
-          delay: inHero ? 0.2 : 0,
-          scrollTrigger: inHero ? undefined : { trigger: el, start: 'top 88%', once: true },
-        });
+        const from = { y: 30, autoAlpha: 0, duration: 1, ease: 'power3.out' };
+        if (inHero) intro.from(el, from, 0.2);
+        else gsap.from(el, { ...from, scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
         return;
       }
 
       if (inHero) {
-        gsap.from(lines, { ...vars, delay: el.classList.contains('hero__title-b') ? 0.35 : 0.15 });
+        intro.from(lines, vars, el.classList.contains('hero__title-b') ? 0.35 : 0.15);
       } else {
         gsap.from(lines, { ...vars, scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
       }
@@ -162,25 +164,23 @@
     const heroBlocks = blocks.filter((b) => b.closest(HERO));
     const otherBlocks = blocks.filter((b) => !b.closest(HERO));
 
-    if (heroBlocks.length) gsap.from(heroBlocks, {
+    if (heroBlocks.length) intro.from(heroBlocks, {
       y: 30,
       autoAlpha: 0,
       duration: 1,
       ease: 'power3.out',
       stagger: 0.1,
-      delay: 0.45,
-    });
-    gsap.from('.header__inner > *', {
+    }, 0.45);
+    intro.from('.header__inner > *', {
       y: -16,
       autoAlpha: 0,
       duration: 0.9,
       ease: 'power3.out',
       stagger: 0.08,
-      delay: 0.1,
       clearProps: 'transform,opacity,visibility',
-    });
+    }, 0.1);
     const heroArt = document.querySelector('.hero__art');
-    if (heroArt) gsap.from(heroArt, { autoAlpha: 0, duration: 1.6, ease: 'power2.out' });
+    if (heroArt) intro.from(heroArt, { autoAlpha: 0, duration: 1.6, ease: 'power2.out' }, 0);
 
     gsap.set(otherBlocks, { y: 40, autoAlpha: 0 });
     ScrollTrigger.batch(otherBlocks, {

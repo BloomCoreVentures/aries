@@ -205,10 +205,14 @@
 
 /* ---------- Header ---------- */
 .header {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto;
   z-index: var(--z-header);
-  padding-top: var(--header-top);
+  padding-block: var(--header-top);
+  background: #1111112b;
+  background: linear-gradient(90deg, rgb(0 0 0 / 5%) 25.5%, rgb(23 46 58 / 5%) 46.5%, rgb(26 26 26 / 5%) 64%);
+  -webkit-backdrop-filter: blur(var(--blur-ui));
+  backdrop-filter: blur(var(--blur-ui));
 }
 
 .header__inner {
@@ -402,10 +406,14 @@
   align-self: flex-start;
 }
 
-/* header sits above the overlay while the menu is open */
+/* header sits above the overlay while the menu is open; no own glass
+   there, so it blends into the menu instead of showing as a band */
 .menu-open .header {
   position: fixed;
   z-index: calc(var(--z-menu) + 1);
+  background: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 /* ---------- Form controls ---------- */
@@ -931,4 +939,71 @@
 
 .form__cond[hidden] {
   display: none;
+}
+
+/* ==========================================================================
+   Preloader (components.js) — ARIES lit by three moving blue lights
+   (Figma frames 1→4), then the curtain slides up (frame 5).
+   Light offsets are relative to frame 1, in SVG units of the 289×73 word.
+   ========================================================================== */
+html.is-preloading,
+html.is-preloading body {
+  overflow: hidden;
+}
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: var(--c-bg);
+  transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.preloader.is-leaving {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.preloader__word {
+  display: block;
+  width: 289px;
+  height: auto;
+  overflow: hidden;
+}
+
+.preloader__light {
+  animation: 2.4s linear forwards;
+}
+
+.preloader__light--1 { animation-name: pl-light-1; }
+.preloader__light--2 { animation-name: pl-light-2; }
+.preloader__light--3 { animation-name: pl-light-3; }
+
+@keyframes pl-light-1 {
+  0% { transform: translate(0, 0); animation-timing-function: ease-in-out; }
+  33.33% { transform: translate(22.4px, 34.2px); animation-timing-function: ease-in-out; }
+  66.66% { transform: translate(43.3px, 134.3px); animation-timing-function: ease-in-out; }
+  100% { transform: translate(137.3px, 147.3px); }
+}
+
+@keyframes pl-light-2 {
+  0% { transform: translate(0, 0); animation-timing-function: ease-in-out; }
+  33.33% { transform: translate(36.6px, 86.4px); animation-timing-function: ease-in-out; }
+  66.66% { transform: translate(125.3px, 82.8px); animation-timing-function: ease-in-out; }
+  100% { transform: translate(104.3px, 0.8px); }
+}
+
+@keyframes pl-light-3 {
+  0% { transform: translate(0, 0); animation-timing-function: ease-in-out; }
+  33.33% { transform: translate(29.5px, 129.7px); animation-timing-function: ease-in-out; }
+  66.66% { transform: translate(-77.1px, 135.5px); animation-timing-function: ease-in-out; }
+  100% { transform: translate(-213.1px, 129.5px); }
+}
+
+@media (max-width: 1023px) {
+  .preloader__word {
+    width: 146px;
+  }
 }

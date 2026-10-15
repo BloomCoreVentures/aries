@@ -581,8 +581,56 @@
 }
 
 .logo-art__logo img {
+  position: relative;
   width: 100%;
   transform: scaleX(-1);
+}
+
+/* ==========================================================================
+   Silhouettes — dark blurred shape under a semi-transparent 3D render
+   (Figma: a vector with fill + background blur below the image). Without it
+   lines / letters behind show through the glass. The mask SVG has the
+   same box as the image, so the span just fills its wrapper.
+   ========================================================================== */
+.silhouette {
+  position: absolute;
+  inset: 0;
+  -webkit-mask: var(--sil) 0 0 / 100% 100% no-repeat;
+  mask: var(--sil) 0 0 / 100% 100% no-repeat;
+  background: var(--sil-fill);
+  -webkit-backdrop-filter: blur(var(--sil-blur));
+  backdrop-filter: blur(var(--sil-blur));
+  pointer-events: none;
+}
+
+.silhouette--phone {
+  --sil: url('../assets/icons/sil-phone.svg');
+  --sil-fill: rgba(0, 0, 0, 0.68);
+  --sil-blur: calc(40 * var(--u));
+}
+
+.silhouette--chat {
+  --sil: url('../assets/icons/sil-chat.svg');
+  --sil-fill: rgba(7, 7, 7, 0.68);
+  --sil-blur: calc(1.16 * var(--u));
+}
+
+.silhouette--envelope {
+  --sil: url('../assets/icons/sil-envelope.svg');
+  --sil-fill: rgba(7, 7, 7, 0.68);
+  --sil-blur: calc(6.47 * var(--u));
+}
+
+.silhouette--logo {
+  --sil: url('../assets/icons/sil-logo.svg');
+  --sil-fill: rgba(7, 7, 7, 0.12);
+  --sil-blur: calc(11.71 * var(--u));
+}
+
+.silhouette--char {
+  --sil: url('../assets/icons/sil-char.svg');
+  --sil-fill: rgba(0, 0, 0, 0.46);
+  --sil-blur: calc(6.04 * var(--u));
 }
 
 .logo-art__badge {
@@ -799,6 +847,17 @@
   width: calc(1099 * var(--u));
 }
 
+.cta-phone__obj {
+  position: absolute;
+}
+
+.cta-phone__obj img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .cta-phone__phone {
   left: calc(50% + (205 - 720) * var(--u));
   top: calc(253 * var(--u));
@@ -808,13 +867,13 @@
 .cta-phone__chat {
   left: calc(50% + (111 - 720) * var(--u));
   top: calc(151 * var(--u));
-  width: calc(279.5 * var(--u));
+  width: calc(279.05 * var(--u));
 }
 
 .cta-phone__envelope {
   left: calc(50% + (1053 - 720) * var(--u));
   top: calc(184 * var(--u));
-  width: calc(268.5 * var(--u));
+  width: calc(268.45 * var(--u));
 }
 
 .cta-phone__art .cta-phone__art-m {
@@ -1420,7 +1479,8 @@
     order: 2;
   }
 
-  .cta-phone__art > img:not(.cta-phone__art-m) {
+  .cta-phone__art > img:not(.cta-phone__art-m),
+  .cta-phone__obj {
     display: none;
   }
 
