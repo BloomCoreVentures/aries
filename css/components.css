@@ -944,7 +944,9 @@
 /* ==========================================================================
    Preloader (components.js) — ARIES lit by three moving blue lights
    (Figma frames 1→4), then the curtain slides up (frame 5).
-   Light offsets are relative to frame 1, in SVG units of the 289×73 word.
+   The word is a mask; the lights are pre-rendered blurred blobs moved with
+   transforms only (compositor → smooth even while the page loads).
+   Sizes are Figma px of the 289×73 desktop word; mobile scales it down.
    ========================================================================== */
 html.is-preloading,
 html.is-preloading body {
@@ -959,6 +961,7 @@ html.is-preloading body {
   place-items: center;
   background: var(--c-bg);
   transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
 }
 
 .preloader.is-leaving {
@@ -967,43 +970,66 @@ html.is-preloading body {
 }
 
 .preloader__word {
-  display: block;
-  width: 289px;
-  height: auto;
+  position: relative;
+  width: 288.994px;
+  height: 73px;
   overflow: hidden;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='288.994' height='73' viewBox='0 0 288.994 73'%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M0 72.1855L24.7261 0.916318H45.9926L70.3116 72.1855H56.0661L51.0802 57.3208H19.3332L14.2455 72.1855H0ZM23.4033 44.8996H47.0101L35.4102 9.67225L23.4033 44.8996Z' fill='%23000' /%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M78.9845 72.1855V0.916318H110.223C117.074 0.916318 122.874 3.29196 127.623 8.04323C132.439 12.7945 134.847 18.4621 134.847 25.046C134.847 29.7973 133.457 34.1413 130.675 38.0781C127.962 41.947 124.4 44.662 119.991 46.2231L135.763 72.1855H121.11L106.356 47.954H92.823V72.1855H78.9845ZM92.823 36.0418H109.918C113.174 36.0418 115.921 34.9558 118.16 32.7838C120.466 30.5439 121.619 27.795 121.619 24.537C121.619 21.3468 120.534 18.6657 118.363 16.4937C116.192 14.3217 113.479 13.2357 110.223 13.2357H92.823V36.0418Z' fill='%23000' /%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M145.891 72.1855V0.916318H159.627V72.1855H145.891Z' fill='%23000' /%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M172.339 72.1855V0.916318H223.521V13.5411H186.076V30.3403H219.451V42.7615H186.076V59.4589H223.521V72.1855H172.339Z' fill='%23000' /%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M262.335 73C257.518 73 252.939 72.3552 248.598 71.0655C244.256 69.708 239.406 67.6718 234.047 64.9568V50.8047C244.019 56.9814 253.516 60.0697 262.538 60.0697C266.54 60.0697 269.661 59.391 271.899 58.0335C274.138 56.6081 275.257 54.6397 275.257 52.1283C275.257 49.8884 274.172 48.1237 272.001 46.834C269.898 45.4765 266.608 44.1869 262.131 42.9651C253.72 40.6574 248.123 38.8587 245.342 37.569C237.269 33.768 233.233 27.9986 233.233 20.2608C233.233 14.152 235.879 9.26499 241.17 5.59972C246.461 1.86657 253.007 0 260.808 0C269.966 0 278.31 2.6132 285.84 7.83961V21.9916C277.157 15.9507 268.779 12.9303 260.707 12.9303C256.569 12.9303 253.245 13.643 250.735 15.0683C248.225 16.4258 246.97 18.3942 246.97 20.9735C246.97 23.1455 248.191 24.8424 250.633 26.0642C253.075 27.218 256.908 28.4398 262.131 29.7294C265.319 30.5439 267.931 31.2906 269.966 31.9693C272.001 32.5802 274.342 33.4965 276.987 34.7183C279.701 35.94 281.803 37.2975 283.296 38.7908C284.856 40.2162 286.179 42.0828 287.264 44.3905C288.417 46.6983 288.994 49.3115 288.994 52.2301C288.994 58.7462 286.484 63.8368 281.464 67.5021C276.444 71.1674 270.068 73 262.335 73Z' fill='%23000' /%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='288.994' height='73' viewBox='0 0 288.994 73'%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M0 72.1855L24.7261 0.916318H45.9926L70.3116 72.1855H56.0661L51.0802 57.3208H19.3332L14.2455 72.1855H0ZM23.4033 44.8996H47.0101L35.4102 9.67225L23.4033 44.8996Z' fill='%23000' /%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M78.9845 72.1855V0.916318H110.223C117.074 0.916318 122.874 3.29196 127.623 8.04323C132.439 12.7945 134.847 18.4621 134.847 25.046C134.847 29.7973 133.457 34.1413 130.675 38.0781C127.962 41.947 124.4 44.662 119.991 46.2231L135.763 72.1855H121.11L106.356 47.954H92.823V72.1855H78.9845ZM92.823 36.0418H109.918C113.174 36.0418 115.921 34.9558 118.16 32.7838C120.466 30.5439 121.619 27.795 121.619 24.537C121.619 21.3468 120.534 18.6657 118.363 16.4937C116.192 14.3217 113.479 13.2357 110.223 13.2357H92.823V36.0418Z' fill='%23000' /%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M145.891 72.1855V0.916318H159.627V72.1855H145.891Z' fill='%23000' /%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M172.339 72.1855V0.916318H223.521V13.5411H186.076V30.3403H219.451V42.7615H186.076V59.4589H223.521V72.1855H172.339Z' fill='%23000' /%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='M262.335 73C257.518 73 252.939 72.3552 248.598 71.0655C244.256 69.708 239.406 67.6718 234.047 64.9568V50.8047C244.019 56.9814 253.516 60.0697 262.538 60.0697C266.54 60.0697 269.661 59.391 271.899 58.0335C274.138 56.6081 275.257 54.6397 275.257 52.1283C275.257 49.8884 274.172 48.1237 272.001 46.834C269.898 45.4765 266.608 44.1869 262.131 42.9651C253.72 40.6574 248.123 38.8587 245.342 37.569C237.269 33.768 233.233 27.9986 233.233 20.2608C233.233 14.152 235.879 9.26499 241.17 5.59972C246.461 1.86657 253.007 0 260.808 0C269.966 0 278.31 2.6132 285.84 7.83961V21.9916C277.157 15.9507 268.779 12.9303 260.707 12.9303C256.569 12.9303 253.245 13.643 250.735 15.0683C248.225 16.4258 246.97 18.3942 246.97 20.9735C246.97 23.1455 248.191 24.8424 250.633 26.0642C253.075 27.218 256.908 28.4398 262.131 29.7294C265.319 30.5439 267.931 31.2906 269.966 31.9693C272.001 32.5802 274.342 33.4965 276.987 34.7183C279.701 35.94 281.803 37.2975 283.296 38.7908C284.856 40.2162 286.179 42.0828 287.264 44.3905C288.417 46.6983 288.994 49.3115 288.994 52.2301C288.994 58.7462 286.484 63.8368 281.464 67.5021C276.444 71.1674 270.068 73 262.335 73Z' fill='%23000' /%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
 }
 
 .preloader__light {
-  animation: 2.4s linear forwards;
+  position: absolute;
+  max-width: none;
+  height: auto;
+  will-change: transform;
+  animation: 4.8s linear both; /* one pass, ends just before the curtain (5s) */
 }
 
-.preloader__light--1 { animation-name: pl-light-1; }
-.preloader__light--2 { animation-name: pl-light-2; }
-.preloader__light--3 { animation-name: pl-light-3; }
+.preloader__light--1 {
+  left: -118.96px;
+  top: -157.95px;
+  width: 238.16px;
+  animation-name: pl-light-1;
+}
+
+.preloader__light--2 {
+  left: 59.48px;
+  top: 29.28px;
+  width: 233.97px;
+  animation-name: pl-light-2;
+}
+
+.preloader__light--3 {
+  left: 202.11px;
+  top: -132.65px;
+  width: 219.6px;
+  animation-name: pl-light-3;
+}
 
 @keyframes pl-light-1 {
-  0% { transform: translate(0, 0); animation-timing-function: ease-in-out; }
-  33.33% { transform: translate(22.4px, 34.2px); animation-timing-function: ease-in-out; }
-  66.66% { transform: translate(43.3px, 134.3px); animation-timing-function: ease-in-out; }
-  100% { transform: translate(137.3px, 147.3px); }
+  0% { transform: translate3d(0px, 0px, 0); animation-timing-function: ease-in-out; }
+  33.33% { transform: translate3d(22.4px, 34.2px, 0); animation-timing-function: ease-in-out; }
+  66.66% { transform: translate3d(43.3px, 134.3px, 0); animation-timing-function: ease-in-out; }
+  100% { transform: translate3d(137.3px, 147.3px, 0); }
 }
 
 @keyframes pl-light-2 {
-  0% { transform: translate(0, 0); animation-timing-function: ease-in-out; }
-  33.33% { transform: translate(36.6px, 86.4px); animation-timing-function: ease-in-out; }
-  66.66% { transform: translate(125.3px, 82.8px); animation-timing-function: ease-in-out; }
-  100% { transform: translate(104.3px, 0.8px); }
+  0% { transform: translate3d(0px, 0px, 0); animation-timing-function: ease-in-out; }
+  33.33% { transform: translate3d(36.6px, 86.4px, 0); animation-timing-function: ease-in-out; }
+  66.66% { transform: translate3d(125.3px, 82.8px, 0); animation-timing-function: ease-in-out; }
+  100% { transform: translate3d(104.3px, 0.8px, 0); }
 }
 
 @keyframes pl-light-3 {
-  0% { transform: translate(0, 0); animation-timing-function: ease-in-out; }
-  33.33% { transform: translate(29.5px, 129.7px); animation-timing-function: ease-in-out; }
-  66.66% { transform: translate(-77.1px, 135.5px); animation-timing-function: ease-in-out; }
-  100% { transform: translate(-213.1px, 129.5px); }
+  0% { transform: translate3d(0px, 0px, 0); animation-timing-function: ease-in-out; }
+  33.33% { transform: translate3d(29.5px, 129.7px, 0); animation-timing-function: ease-in-out; }
+  66.66% { transform: translate3d(-77.1px, 135.5px, 0); animation-timing-function: ease-in-out; }
+  100% { transform: translate3d(-213.1px, 129.5px, 0); }
 }
 
 @media (max-width: 1023px) {
   .preloader__word {
-    width: 146px;
+    scale: 0.505; /* 146px wide, as in the mobile frames */
   }
 }
